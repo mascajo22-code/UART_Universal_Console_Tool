@@ -41,6 +41,51 @@ Je recherche des personnes possédant différentes consoles PS2, PS3, PS4 et PS5
 
 **Tous les retours, tests, corrections et contributions sont les bienvenus !**
 
+ENGLISH
+
+# UART Universal Console Tool – PS2 / PS3 / PS4 / PS5
+
+**UART Universal Console Tool** is a diagnostic software designed to facilitate UART communication with Sony PlayStation consoles, ranging from the PS2 to the PS5.
+
+The goal is to consolidate various functions useful to technicians, repair specialists, and console repair enthusiasts into a single, simple interface.
+
+## Features
+
+- Detection of available COM ports.
+- Serial port configuration: baud rate, data bits, parity, and stop bits.
+- UART communication in ASCII and HEX formats.
+- Real-time display of received data.
+- Sending of manual commands.
+- Logging of communications to a file.
+- Configuration profiles for different console generations.
+- Assisted identification of specific UART interfaces.
+- Initial tools for reading and analyzing PS3 Syscon information.
+
+## Supported Consoles
+
+- PlayStation 2
+- PlayStation 3
+- PlayStation 4
+- PlayStation 5
+
+Compatibility depends on the specific model, motherboard revision, and the UART protocol in use. Some features are experimental and require testing on actual hardware.
+
+## Windows Compatibility
+
+The project is designed to run on:
+- Windows 7
+- Windows 8 / 8.1
+- Windows 10
+- Windows 11
+
+## Community Project
+
+This software was developed with the assistance of artificial intelligence.
+
+I am looking for individuals who own various PS2, PS3, PS4, and PS5 consoles to help test the software, verify UART profiles, and incrementally improve the diagnostic functions.
+
+**All feedback, test results, corrections, and contributions are welcome!**
+
 ## Attention
 
 Avant toute connexion, vérifiez impérativement le brochage UART et les niveaux logiques de votre carte mère. Ne raccordez jamais la broche VCC de l'adaptateur USB-UART à la console sans documentation spécifique.
