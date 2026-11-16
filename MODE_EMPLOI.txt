@@ -1,0 +1,98 @@
+UART UNIVERSAL CONSOLE TOOL - V3
+================================
+
+OBJET
+-----
+Terminal série UART/TTL générique pour recevoir et transmettre des données
+sur un port COM Windows. Profils de départ : PS2 MechaCon SPC970, PS2
+MechaCon Dragon (expérimental), PS3 Syscon, PS4 UART0, PS5 manuel et UART
+générique.
+
+INSTALLATION (SOURCE)
+---------------------
+1. Pour Windows 7, utiliser Python 3.8.10 (dernière branche compatible) et un Windows 7 à jour.
+   Pour Windows 10/11, Python 3.10 ou 3.11 convient. Cocher l'ajout au PATH.
+2. Décompresser le dossier.
+3. Lancer INSTALLER_DEPENDANCES.bat.
+4. Lancer LANCER.bat.
+
+CREER UN EXE
+------------
+Sur Windows, lancer BUILD_EXE.bat. Le fichier est créé dans dist\
+UART_Universal_Console_Tool.exe. Le mode d'emploi est copié à côté.
+La compilation doit être effectuée sur Windows ; aucun EXE compilé n'est
+fourni dans cette archive. PyInstaller 5.13.2 est épinglé pour préserver une
+meilleure compatibilité avec les anciennes versions de Windows/Python.
+
+UTILISATION
+-----------
+1. Brancher l'adaptateur USB-UART au PC.
+2. Vérifier le brochage et la tension logique sur la documentation exacte
+   de la carte mère avant de raccorder la console.
+3. Connecter GND, RX et TX selon le schéma validé. TX de l'adaptateur va
+   généralement vers RX de la carte et RX vers TX, mais vérifier le schéma.
+4. Ne jamais relier VCC de l'adaptateur à la console dans le cadre de ce
+   terminal. Ne jamais brancher une sortie RS-232 sur une entrée TTL.
+5. Sélectionner le profil, le port COM et vérifier les paramètres série.
+6. Cliquer Se connecter. Le logiciel commence en écoute passive ; il
+   n'envoie aucune commande automatiquement.
+7. Utiliser l'émission manuelle uniquement si la commande et le protocole
+   sont documentés pour la révision exacte de la carte.
+8. Enregistrer le journal pour analyse.
+
+PROFILS ET LIMITES
+------------------
+PS2 SPC970 : 57600 bauds, 8N1 comme profil de départ. La commande rapide
+cfd est proposée avec confirmation pour lecture du modèle SPC970 seulement.
+Ne pas l'utiliser sur MechaCon Dragon ou un modèle non confirmé.
+
+PS2 Dragon : le débit de départ affiché n'implique pas une compatibilité
+protocolaire avec SPC970. Aucune sonde Dragon n'est envoyée.
+
+PS3 Syscon : 57600 bauds, 8N1 comme profil de départ selon les références
+techniques consultées. La commande rapide VER:ED est proposée avec confirmation
+pour certaines variantes ; vérifier la compatibilité de la révision.
+
+PS4 UART0 : 115200 bauds, 8N1 sur des cartes documentées. L'identification
+est passive, à partir de chaînes éventuelles des journaux de démarrage.
+
+PS5 : profil manuel uniquement. Les paramètres et brochages dépendent de la
+révision. Le logiciel ne prétend pas identifier automatiquement toutes les
+cartes PS5 et n'envoie aucune commande PS5.
+
+IDENTIFICATION
+--------------
+Les chaînes PS3 et PS4 sont des indices heuristiques. Elles ne constituent
+pas une identification certaine. Le nom du port COM identifie l'adaptateur,
+pas la console. PS2 et PS5 ne sont pas reconnus de façon universelle.
+
+SECURITE
+--------
+- UART n'est pas une tension universelle : vérifier 1,8 V / 3,3 V / autres
+  niveaux selon la carte et utiliser un adaptateur adapté.
+- Ne pas supposer que tous les points sérigraphiés TX/RX sont tolérants 5 V.
+- Ne jamais connecter VCC sans documentation explicite.
+- Ne pas envoyer de commandes d'écriture, d'effacement, de flash ou de
+  réparation via le terminal sans procédure validée.
+- Une mauvaise connexion peut endommager la carte mère ou l'adaptateur.
+- Le logiciel est un terminal et un outil d'observation ; il ne répare pas
+  la console et ne réalise aucun diagnostic matériel certifié.
+
+DEPANNAGE
+---------
+Aucun port COM : installer le pilote de l'adaptateur USB-UART, débrancher /
+rebrancher puis cliquer Actualiser.
+Aucun texte reçu : vérifier GND commun, croisement TX/RX, niveau logique,
+paramètres série, activation de l'UART et émission au démarrage.
+Caractères illisibles : vérifier débit, parité, bits de données et stop bits.
+Port occupé : fermer tout autre terminal série utilisant le même COM.
+
+DEPENDANCES
+-----------
+Python 3 + Tkinter + PySerial. PyInstaller est utilisé pour construire l'EXE.
+
+AVERTISSEMENT
+-------------
+Ce logiciel est fourni à des fins de diagnostic et de recherche. Les profils
+sont des points de départ, pas une garantie de compatibilité. Toujours
+consulter la documentation de la révision exacte de la carte.
